@@ -14,6 +14,8 @@ The files presented here are meant to provide a moderately paced but comprehensi
 : Simple binding model with modifed `method` option to `simulate` command to demonstrate `ssa` method for performing stochastic simulation.
 
 [`AB.bngl`](AB/AB.bngl)
-: Simple binding model re-factored to used structured molecules with binding sites and a binding rule that adds or deletes a bond.
+: Simple binding model re-factored to used structured molecules with binding sites and a binding rule that adds or deletes a bond. Things to notice:
+* Contact Map panel in RuleBender shows Molecule and Component interactions.
+* Clicking tabs associated with Obervables shows Patterns and corresponding mathces. 
 
 ![Flagman](images/Flagman.gif)
