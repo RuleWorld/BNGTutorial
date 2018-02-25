@@ -20,4 +20,4 @@ The files presented here are meant to provide a moderately paced but comprehensi
 * Contact Map panel in RuleBender shows Molecule and Component interactions.
 * Clicking tabs associated with Obervables shows Patterns and corresponding mathces. 
 
-![Flagman](images/Flagman.gif)
+![Flagman](images/Flagman-smaller.gif)
