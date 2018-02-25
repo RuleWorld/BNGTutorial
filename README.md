@@ -24,6 +24,9 @@ The files presented here are meant to provide a moderately paced but comprehensi
 : Simple binding model with a bivalent A molecule that has two identical sites for binding of B. Binding at each site is not affected by the status of the other site (noncooperative binding).
 
 [`BAB_scan.bngl`](BAB/BAB_scan.bngl)
-: Varying the amount of A reveals nonmonotonic behavior of complexation. This example demonstrates use of the `log_scale` option to `parameter_scan`.
+: Varying the amount of A reveals nonmonotonic behavior of complexation. This example demonstrates use of the `log_scale` option to `parameter_scan`. Things to notice:
+* To observe the behavior of the BAB complex, you will have to turn off display of the other, more abundant observables.
+* You will also need to change the X Axis scale from `linear` to `log`.
+* You can replicate the behavior of the `parameter_scan` function by switching the `Run File` option to `Parameter Scan` in the Simulation tab in RuleBender and then completing the entries in the form that appears below the selection.
 
 ![Flagman](images/Flagman-smaller.gif)
