@@ -6,7 +6,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 : Simple binding model in BNGL using unstructured molecules to represent each species. Demonstrates basic syntax of `simulate` command.
 
 [`ABC_scan.bngl`](ABC_scan.bngl)
-: Simple binding model modified to use`parameters` block, which enables `parameter_scan`. Also demonstrates use of `#` for comments and `\` character for line continuation.
+: Simple binding model modified to use`parameters` block, which enables `parameter_scan`. Also demonstrates use of `#` for comments and `\` for line continuation.
 
 
 ![Flagman](images/Flagman.gif)
