@@ -4,6 +4,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 
 **Click on the link to see the BNGL code.**
 
+## Basic structure and syntax
 [`ABC.bngl`](ABC/ABC.bngl)
 : Simple binding model in BNGL using unstructured molecules to represent each species. Demonstrates basic syntax of `simulate` command.
 
@@ -13,6 +14,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 [`ABC_ssa.bngl`](ABC/ABC_ssa.bngl)
 : Simple binding model with modifed `method` option to `simulate` command to demonstrate `ssa` method for performing stochastic simulation.
 
+## Using structured molecules and rules
 [`AB.bngl`](AB/AB.bngl)
 : Simple binding model re-factored to used structured molecules with binding sites and a binding rule that adds or deletes a bond. Things to notice:
 * Contact Map panel in RuleBender shows Molecule and Component interactions.
