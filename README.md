@@ -20,4 +20,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 * Contact Map panel in RuleBender shows Molecule and Component interactions.
 * Clicking tabs associated with Obervables shows Patterns and corresponding mathces. 
 
+[`BAB.bngl`](BAB/BAB.bngl)
+: Simple binding model with a bivalent A molecule that has two identical sites for binding of B. Binding at each site is not affected by the status of the other site (noncooperative binding).
+
 ![Flagman](images/Flagman-smaller.gif)
