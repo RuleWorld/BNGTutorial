@@ -23,4 +23,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 [`BAB.bngl`](BAB/BAB.bngl)
 : Simple binding model with a bivalent A molecule that has two identical sites for binding of B. Binding at each site is not affected by the status of the other site (noncooperative binding).
 
+[`BAB_scan.bngl`](BAB/BAB_scan.bngl)
+: Varying the amount of A reveals nonmonotonic behavior of complexation. This example demonstrates use of the `log_scale` option to `parameter_scan`.
+
 ![Flagman](images/Flagman-smaller.gif)
