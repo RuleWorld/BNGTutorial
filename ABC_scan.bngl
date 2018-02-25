@@ -1,0 +1,24 @@
+begin model
+  begin parameters
+    A0 100  # Initial number of A molecules
+    B0 100  # Initial number of B molecules
+    ka 0.01 # A-B association rate constant (1/molecule 1/s)
+    kd 1    # A-B dissociation rate constant (1/s)
+  end parameters
+  begin seed species
+    A A0
+    B B0
+  end seed species
+  begin observables
+    Molecules A A()
+    Molecules B B()
+    Molecules C C()
+  end observables
+  begin reaction rules
+    A() + B() <-> C() ka, kd
+  end reaction rules
+end model
+
+generate_network()
+parameter_scan({parameter=>"B0",par_min=>0,par_max=>1000,n_scan_pts=>50,\
+                method=>"ode",t_end=>10000})                
