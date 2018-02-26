@@ -14,7 +14,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 [`ABC_ssa.bngl`](ABC/ABC_ssa.bngl)
 : Simple binding model with modifed `method` option to `simulate` command to demonstrate `ssa` method for performing stochastic simulation.
 
-## Using structured molecules and rules
+## Using structured molecules and rules: Binding
 [`AB.bngl`](AB/AB.bngl)
 : Simple binding model re-factored to used structured molecules with binding sites and a binding rule that adds or deletes a bond. Things to notice:
 * Contact Map panel in RuleBender shows Molecule and Component interactions.
@@ -29,5 +29,10 @@ The files presented here are meant to provide a moderately paced but comprehensi
 * To observe the behavior of the BAB complex, you will have to turn off display of the other, more abundant observables.
 * You will also need to change the X Axis scale from `linear` to `log`.
 * You can replicate the behavior of the `parameter_scan` function by switching the `Run File` option to `Parameter Scan` in the Simulation tab in RuleBender and then completing the entries in the form that appears below the selection.
+
+## Using structured molecules and rules: Component state change
+
+[`ABp.bngl`](ABp/ABp.bngl)
+: Simple enzyme binding and substrate modification scheme. A is a kinase and B contains a phosphorylabe substrate site called `Y`, which has two states, `0` and `P`, which represent the unphosphorylated state and phosphorylated states respectively.
 
 ![Flagman](images/Flagman-smaller.gif)
