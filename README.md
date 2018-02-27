@@ -33,6 +33,11 @@ The files presented here are meant to provide a moderately paced but comprehensi
 ## Using structured molecules and rules: Component state change
 
 [`ABp.bngl`](ABp/ABp.bngl)
-: Simple enzyme binding and substrate modification scheme. A is a kinase and B contains a phosphorylabe substrate site called `Y`, which has two states, `0` and `P`, which represent the unphosphorylated state and phosphorylated states respectively.
+: Simple enzyme binding and substrate modification scheme. A is a kinase and B contains a phosphorylable substrate site called `Y`, which has two states, `0` and `P`, which represent the unphosphorylated state and phosphorylated states respectively. This model also demonstrates the use of expressions in the `parameters` block to perform unit conversions and comments to define a consistent set of units. We recommend cubic microns (fL) as the standard volume unit, µM or molecule counts for concentration, µm for length, and µm<sup>2</sup> for area.
+
+[`ABp_approx.bngl`](ABp/ABp_approx.bngl)
+: A simplified version of the A-B phosphorylation model in which the explicit binding of A and B is eliminated and the phosphorylation reaction rate is given by the Michaelis-Menten rate law. 
+
+**Exercise:** Try changing the initial amounts of A and B such that A is in ten-fold excess over B and plotting the resulting time courses. What do you observe? (*Hint: Be sure to change the duration of the simulation as well.*)
 
 ![Flagman](images/Flagman-smaller.gif)
