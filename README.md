@@ -40,7 +40,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 
 **Exercise:** Try changing the initial amounts of A and B such that A is in ten-fold excess over B and plotting the resulting time courses. What do you observe? (*Hint: Be sure to change the duration of the simulation as well.*)
 
-[More advanced models of substrate modification dynamics](ABp/AdvancedModels.md). Demonstrates additional use of functions in rate laws and use of the `bifurcate` command to examine a bistable system.
+[More advanced models of substrate modification dynamics](ABp/AdvancedModels.md). Demonstrates additional use of functions in rate laws, how to define a simulation protocol using multiple `simulate` commands and the `setParameter` command, and use of the `bifurcate` command to examine a bistable system. 
 
 ## Modeling synthesis and degradation 
 
