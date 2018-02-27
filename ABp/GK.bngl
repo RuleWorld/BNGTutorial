@@ -1,0 +1,32 @@
+## title: GK.bngl
+## description: Goldebeter-Koshland model in dimensionless units.
+## reference: Goldbeter, Albert, and Daniel E. Koshland, Jr. 
+##            “An Amplified Sensitivity Arising from Covalent Modification in 
+#              Biological Systems.” Proc. Natl. Acad. Sci. USA 78, no. 11 (1981): 6840–44. 
+## author: Jim Faeder
+## date: 27Feb2018
+## note: 
+begin model
+begin parameters
+  K 100
+  P 1
+  B0 1 
+  Km_K 0.1 # Both Km's must be <<1 for the system to be ultrasensitive.
+  Km_P 0.1
+end parameters
+begin molecule types
+  B(Y~0~p)
+end molecule types
+begin seed species
+  B(Y~0) B0
+end seed species
+begin observables
+  Molecules Bu B(Y~0)
+  Molecules Bp B(Y~p)
+end observables
+begin reaction rules
+  B(Y~0) <-> B(Y~p) K/(Km_K + Bu), P/(Km_P + Bp)
+end reaction rules
+end model
+
+simulate({method=>"ode",t_end=>100,n_steps=>200})
