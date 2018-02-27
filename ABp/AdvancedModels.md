@@ -9,4 +9,4 @@
 [`Lisman_bifurcate.bngl`](Lisman_bifurcate.bngl)
 : Bifurcation analysis of the Lisman model of autophosphorylating kinase using the `bifurcate` command in BNGL. Starting from an inactive state, the input parameter `S` is scanned up to a maximum value and then back down to the initial value. The input concentrations for each simulation are taken from the final (steady state) values of the previous simulation. Because the scan starts in a region of bistability and passes above the bifurcation point, the switching to the upper steady state is irreversible.
 
-![Lisman_bifurcation](Lisman_bifurcation.png)
+![Lisman_bifurcate](Lisman_bifurcate.png)
