@@ -1,0 +1,42 @@
+## title: ABp.bngl
+## description: Simple model of enzyme kinetics in which A is a kinase and B is a
+##              phosphorylabe substrate simulated using the approximate form of the
+##              rate law often called the Michaelis-Menton rate law.
+## author: Jim Faeder
+## date: 27Feb2018
+## note: Units consistent with uM for concentration, um^3=fL for volume
+begin model
+begin parameters
+    # Cell volume
+    V    1 # units: um^3
+    # Conversion factor from uM to 1/um^3
+    NaV  602*V
+    # Rate constants
+    kp1  1.0/(NaV) # 1/uM 1/s -> 1/molecules 1/s
+    km1  1.0e-1 # 1/s
+    k2   1.0e-2 # 1/s
+    Km    (km1 + k2)/kp1 # Michaelis constant
+
+   # Initial concentrations
+    A0   0.01*NaV # uM -> molecules/cell
+    B0   1.0*NaV  # uM -> molecules/cell
+end parameters
+begin molecule types
+    A(b)
+    B(a,Y~0~p)
+end molecule types
+begin seed species
+    A(b)      A0
+    B(a,Y~0)  B0
+end seed species
+begin observables
+    Molecules Bu B(a,Y~0)
+    Molecules Bp B(a,Y~p)
+end observables
+begin reaction rules
+    ABphos: A(b) + B(a,Y~0) -> A(b) + B(a,Y~p) k2/(Km + Bu)
+end reaction rules
+end model
+
+# simulate the expanded network use ODE's
+simulate({method=>"ode", t_end=>20000,n_steps=>1000})
