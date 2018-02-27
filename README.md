@@ -42,4 +42,20 @@ The files presented here are meant to provide a moderately paced but comprehensi
 
 [More advanced models of substrate modification dynamics](ABp/AdvancedModels.md). Demonstrates additional use of functions in rate laws and use of the `bifurcate` command to examine a bistable system.
 
+## Modeling synthesis and degradation 
+
+## Compartments in BioNetGen
+
+[`LR.bngl`](LR/LR.bngl)
+: Non-compartmental model of simple ligand-receptor binding.
+
+[`LR_comp.bngl`](LR/LR_comp.bngl)
+: Compartmental model of simple ligand-receptor binding.
+
+[`LRR.bngl`](LR/LRR.bngl)
+: Non-compartmental model of ligand-receptor binding and dimerization.
+
+[`LRR_comp.bngl`](LR/LRR_comp.bngl)
+: Compartmental model of ligand-receptor binding and dimerization.
+
 ![Flagman](images/Flagman-smaller.gif)
