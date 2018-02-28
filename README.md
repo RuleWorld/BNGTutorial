@@ -1,6 +1,6 @@
 # BioNetGen Tutorial
 
-The files presented here are meant to provide a moderately paced but comprehensive introduction to the syntax and features of the BioNetGen language (BNGL) and modeling software. During the workshop, these examples will be used in a hand-on demonstration using the RuleBender interface.
+The files presented here are meant to provide a moderately paced but comprehensive introduction to the syntax and features of the BioNetGen language (BNGL) and modeling software. These examples can be run either using `BNG2.pl` from the command line or using the RuleBender interface. We have made a [short video](https://www.youtube.com/watch?v=MWoY5iaC8W0&t=1s) showing how to get started using RuleBender. 
 
 **Click on the link to see the BNGL code.**
 
