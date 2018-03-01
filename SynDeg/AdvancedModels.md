@@ -1,4 +1,4 @@
-[`CircadianOsciallator.bngl`](CircadianOsciallator.bngl)
+[`CircadianOsciallator.bngl`](CircadianOscillator.bngl)
 : A more complex model of an activator/repressor system that has a single steady state when simulated with ODE's but can exhibit stable osciallations when simulated with SSA. Demonstrates coupling of binding and synthesis. 
 
 [`Repressilator.bngl`](Repressilator.bngl)
