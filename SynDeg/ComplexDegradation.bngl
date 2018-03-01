@@ -1,0 +1,36 @@
+## Title: ComplexDegradation.bngl
+## Description: Demonstrates behavior of various rules specifying degradation
+#               of complexes and how this can be controlled by the DeleteMolecules
+#               keyword.
+## Author: James R. Faeder
+## Date: 01Mar2018
+
+begin seed species
+  A(b)                     1
+  B(a,c)                   1
+  C(b)                     1
+  A(b!1).B(a!1,c)          1
+  A(b!1).B(a!1,c!2).C(b!2) 1
+end seed species
+begin reaction rules
+ # Degrades only free A (A(b)). (1 reaction)
+ Rule01: A(b) -> 0 1
+ 
+ # Degrades all species in which A is present. (3 reactions)
+ Rule02: A()  -> 0 1
+ 
+ # Degrades only A molecule in species where A is present.
+ # (3 reactions, 2 with non-zero products)
+ Rule03: A()  -> 0 1 DeleteMolecules # Keywords are case-sensitive!
+
+ # Degrades B when complexed with A, but only if fragment containing B
+ # contains no additional molecules. (1 reaction)
+ Rule04: A(b!1).B(a!1) -> A(b) 1 
+
+ # Degrades B when complexed with A allowing additional species to be generated
+ # if B is complexed with other molecules. (2 reactions)
+ Rule05: A(b!1).B(a!1) -> A(b) 1 DeleteMolecules 
+end reaction rules
+
+# TextReaction flag creates reacionts with full species patterns.
+generate_network({TextReaction=>1})

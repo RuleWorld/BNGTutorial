@@ -52,11 +52,10 @@ The files presented here are meant to provide a moderately paced but comprehensi
 
 **Exercise:** Make a simple model of an auto-regulating gene in which the gene product P dimerizes and binds to the promoter to block transcription. 
 
-[`CircadianOsciallator.bngl`](SynDeg/CircadianOsciallator.bngl)
-: A more complex model of an activator/repressor system that has a single steady state when simulated with ODE's but can exhibit stable osciallations when simulated with SSA. Demonstrates coupling of binding and synthesis. 
+[`ComplexDegradation.bngl`](SynDeg/ComplexDegradation.bngl)
+: Demonstrates behavior of various rules specifying degradation of complexes and how this can be controlled by the `DeleteMolecules` keyword.
 
-[`Repressilator.bngl`](SynDeg/Repressilator.bngl)
-: Three-gene model of synthetic circuit that demonstrates cooperative binding and coupled binding and gene regulation. Also demonstrates use of `pla` simulation method.
+[More advanced models of gene regulation](SynDeg/AdvancedModels.md)
 
 ## Compartments in BioNetGen
 
