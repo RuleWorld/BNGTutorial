@@ -55,6 +55,8 @@ The files presented here are meant to provide a moderately paced but comprehensi
 [`ComplexDegradation.bngl`](SynDeg/ComplexDegradation.bngl)
 : Demonstrates behavior of various rules specifying degradation of complexes and how this can be controlled by the `DeleteMolecules` keyword.
 
+**Exercise:** Modify the model you made in the previous exercise to allow degradation of P even when it's bound to DNA without degrading the DNA.
+
 [More advanced models of gene regulation](SynDeg/AdvancedModels.md)
 
 ## Compartments in BioNetGen
