@@ -44,6 +44,10 @@ The files presented here are meant to provide a moderately paced but comprehensi
 
 ## Modeling synthesis and degradation 
 
+[`birth-death.bngl`](GeneReg/birth-death.bngl)
+: Simple model illustrating synthesis and degradation of molecules. Also, demonstrates use of `saveConcentrations()` and `resetConcentrations()` to save and restore initial conditions and to compare model simulated with two different methods. Introduces `generate_network()` command.
+
+
 ## Compartments in BioNetGen
 
 [`LR.bngl`](LR/LR.bngl)
