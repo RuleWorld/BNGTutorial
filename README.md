@@ -1,8 +1,8 @@
 # BioNetGen Tutorial
 
-The files presented here are meant to provide a moderately paced but comprehensive introduction to the syntax and features of the BioNetGen language (BNGL) and modeling software. During the workshop, these examples will be used in a hand-on demonstration using the RuleBender interface.
+The files presented here are meant to provide a moderately paced but comprehensive introduction to the syntax and features of the BioNetGen language (BNGL) and modeling software. These examples can be run either using `BNG2.pl` from the command line or using the RuleBender interface. We have made a [short video](https://www.youtube.com/watch?v=MWoY5iaC8W0&t=1s) showing how to get started using RuleBender. 
 
-**Click on the link to see the BNGL code.**
+**Click on the link to see the BNGL code, which can be copy/pasted into a .bngl file in an editor or RuleBender.**
 
 ## Basic structure and syntax
 [`ABC.bngl`](ABC/ABC.bngl)
@@ -40,7 +40,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 
 **Exercise:** Try changing the initial amounts of A and B such that A is in ten-fold excess over B and plotting the resulting time courses. What do you observe? (*Hint: Be sure to change the duration of the simulation as well.*)
 
-[More advanced models of substrate modification dynamics](ABp/AdvancedModels.md). Demonstrates additional use of functions in rate laws and use of the `bifurcate` command to examine a bistable system.
+[More advanced models of substrate modification dynamics](ABp/AdvancedModels.md). Demonstrates additional use of functions in rate laws, how to define a simulation protocol using multiple `simulate` commands and the `setParameter` command, and use of the `bifurcate` command to examine a bistable system. 
 
 ## Modeling synthesis and degradation 
 
