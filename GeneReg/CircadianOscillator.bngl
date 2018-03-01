@@ -1,0 +1,93 @@
+## title: Vilar Circadian Oscillator Model
+## author: Jim Faeder
+## date: 31Mar2016
+## Reference: Vilar, JMG et al. PNAS, 99:5988-5992 (2002)
+
+begin parameters
+  alpha_A   50 # 1/h
+  alpha_Ap 500 # 
+  alpha_R    0.01 
+  alpha_Rp  50
+  beta_A    50
+  beta_R     5
+  delta_MA  10
+  delta_MR   0.5
+  delta_A    1
+  delta_R    0.2/4
+  gamma_A    1  # 1/molec 1/h
+  gamma_R    1
+  gamma_C    2
+  theta_A   50  # 1/h
+  theta_R  100
+end parameters
+
+begin molecule types
+  A(r,d) 
+  R(a)
+  pA(a)
+  pR(a)
+  mRNA_A()
+  mRNA_R()
+end molecule types
+
+begin seed species
+  A(r,d) 0
+  R(a)   0
+  pA(a)  1
+  pR(a)  1
+end seed species
+
+begin observables
+  Molecules Afree A(r,d) # note: These are the observables reported in the paper
+  Molecules Rfree R(a)   #
+  Molecules Atot A()
+  Molecules Rtot R()
+end observables
+
+begin reaction rules
+# Transcription 
+Atransc_basal: \
+	pA(a) -> pA(a) + mRNA_A() alpha_A
+Atransc_active: \
+	pA(a!+) -> pA(a!+) + mRNA_A() alpha_Ap
+Rtransc_basal: \
+	pR(a) -> pR(a) + mRNA_R() alpha_R
+Rtransc_active: \
+	pR(a!+) -> pR(a!+) + mRNA_R() alpha_Rp
+
+# Translation
+Atransl: \ 
+	mRNA_A() -> mRNA_A() + A(r,d) beta_A
+Rtransl: \ 
+	mRNA_R() -> mRNA_R() + R(a) beta_R
+
+# Activation-Promoter binding
+A_binds_pA: \
+  A(r,d) + pA(a) <-> A(r,d!1).pA(a!1) gamma_A, theta_A
+A_binds_pR: \
+  A(r,d) + pR(a) <-> A(r,d!1).pR(a!1) gamma_R, theta_R
+
+# Repressor-Activator binding
+A_binds_R: \
+   A(r,d) + R(a) -> A(r!1,d).R(a!1) gamma_C 
+
+# Degradation
+
+# mRNA
+mRNA_Adeg:\
+   mRNA_A() -> 0 delta_MA
+mRNA_Rdeg:\
+   mRNA_R() -> 0 delta_MR
+
+# Protein
+# A degrades unless bound to DNA
+Afreedeg: \
+   A(d,r) -> 0 delta_A
+Abounddeg: \ 
+   A(d,r!1).R(a!1) -> R(a) delta_A
+Rdeg: \ 
+   R(a) -> 0 delta_R
+	
+end reaction rules
+
+simulate({method=>"ssa",t_end=>400,n_steps=>1000})
