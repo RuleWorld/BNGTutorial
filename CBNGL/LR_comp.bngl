@@ -1,0 +1,54 @@
+## title: LR_comp.bngl
+## Compartmental version of simple ligand-receptor binding model expressed in cell units:
+#     time - seconds
+#     concentration - molecule number
+#     length - um, area - um^2, volume - um^3
+#     bimolecular association - um^3/s (3D), um^2/s (2D) 
+## author: Jim Faeder
+## date: 05Mar2018
+
+begin model
+begin parameters
+ NaV 6.02e8 # Conversion constant: M -> #/um^3
+ Vcell 1000 # Typical eukaryotic cell volume ~ 1000 um^3
+ Vec   1000*Vcell # Volume of extracellular space around each cell (1/cell density)
+ d_pm  0.01 # Effective thickness of the plasma membrane (10 nm)
+ Acell 1000 # Approximate area of PM
+ Vpm   Acell*d_pm # Effective volume of PM
+ lig_conc 1e-8 # Ligand concentration - molar 
+ L0 lig_conc*NaV*Vec # number of ligand molecules
+ R0 10000 # number of receptor molecules per cell
+ 
+ kp1 1e6/NaV # Forward binding rate constant for L-R (um^3/s)
+ km1 0.01 # Reverse binding rate constant for L-R
+end parameters
+
+begin compartments
+  EC 3 Vec 
+  PM 2 Vpm EC
+  CP 3 Vcell PM # not used in this version of the model
+end compartments
+
+begin molecule types
+  L(r) # L molecule has one binding site for R
+  R(l) # R molecule has one binding site for L
+end molecule types
+
+# Each species must be assigned to a compartment
+begin species
+  @EC:L(r) L0  
+  @PM:R(l) R0
+end species
+
+begin observables
+  Molecules FreeR R(l)
+  Molecules Bound L(r!1).R(l!1)
+  Molecules test @EC:L(r!+) # Testing if any bound ligands in EC
+end observables
+
+begin reaction rules
+  L(r) + R(l) <-> L(r!1).R(l!1) kp1, km1
+end reaction rules
+end model
+
+simulate({method=>"ode",t_end=>300,n_steps=>500})

@@ -14,6 +14,9 @@ The files presented here are meant to provide a moderately paced but comprehensi
 [`ABC_ssa.bngl`](ABC/ABC_ssa.bngl)
 : Simple binding model with modifed `method` option to `simulate` command to demonstrate `ssa` method for performing stochastic simulation.
 
+[`LV.bngl`](ABC/LV.bngl)
+: Lotke-Volterra model in BioNetGen syntax.
+
 ## Using structured molecules and rules: Binding
 [`AB.bngl`](AB/AB.bngl)
 : Simple binding model re-factored to used structured molecules with binding sites and a binding rule that adds or deletes a bond. Things to notice:
@@ -61,16 +64,16 @@ The files presented here are meant to provide a moderately paced but comprehensi
 
 ## Compartments in BioNetGen
 
-[`LR.bngl`](LR/LR.bngl)
+[`LR.bngl`](CBGL/LR.bngl)
 : Non-compartmental model of simple ligand-receptor binding.
 
-[`LR_comp.bngl`](LR/LR_comp.bngl)
+[`LR_comp.bngl`](CBNGL/LR_comp.bngl)
 : Compartmental model of simple ligand-receptor binding.
 
-[`LRR.bngl`](LR/LRR.bngl)
+[`LRR.bngl`](CBNGL/LRR.bngl)
 : Non-compartmental model of ligand-receptor binding and dimerization.
 
-[`LRR_comp.bngl`](LR/LRR_comp.bngl)
+[`LRR_comp.bngl`](CBNGL/LRR_comp.bngl)
 : Compartmental model of ligand-receptor binding and dimerization.
 
 ![Flagman](images/Flagman-smaller.gif)
