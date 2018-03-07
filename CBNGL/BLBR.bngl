@@ -1,0 +1,50 @@
+## title: BLBR.bngl
+#  description: Bivalent ligand - bivalent receptor (BLBR) model, which is a simple model of polymer
+#               formation by receptors that can form a chain with infinite length (in the continuum limit).
+#               Simulating this model using a generate and simulate approach is problematic because
+#               for these parameters the required network of complexes is very large. Using network-free 
+#               simulation addresses this problem.
+
+setOption("SpeciesLabel","HNauty");
+begin parameters
+ kp1 1
+ km1 1
+ kp2 1
+ km2 1
+ kp3 1
+ km3 1
+ R0  1000
+ L0  1000
+end parameters
+
+begin species
+  R(r,r) R0
+  L(l,l) L0
+end species
+
+begin observables
+  Species R1 R==1
+  Species R2 R==2
+  Species R3 R==3
+  Species R4 R==4
+  Species R5 R==5
+  Species Rbig R>20  
+end observables
+
+begin reaction rules
+# Ligand addition
+R(r) + L(l,l) <-> R(r!1).L(l!1,l) kp1,km1
+
+# Chain elongation
+R(r) + L(l,l!+) <-> R(r!1).L(l!1,l!+) kp2,km2
+
+# Ring closure
+#R(r).L(l) <-> R(r!1).L(l!1) kp3,km3
+
+end reaction rules
+
+# Do partial network expansion and simulate the ODE's corresponding to the limited network.
+#generate_network({max_stoich=>{R=>5,L=>5}})
+#simulate({method=>"ode",t_end=>10,n_steps=>1000})
+ 
+simulate({method=>"nf",t_end=>10,n_steps=>1000,get_final_state=>1})

@@ -76,6 +76,9 @@ The files presented here are meant to provide a moderately paced but comprehensi
 [`LRR_comp.bngl`](CBNGL/LRR_comp.bngl)
 : Compartmental model of ligand-receptor binding and dimerization.
 
+[`BLBR.bngl`](CBNGL/BLBR.bngl)
+: Bivalent ligand - bivalent receptor (BLBR) model, which is a simple model of polymer formation by receptors that can form a chain with infinite length (in the continuum limit). Simulating this model using a generate and simulate approach is problematic because for these parameters the required network of complexes is very large. Using network-free simulation addresses this problem.
+
 ### Models for CellBlender
 
 *As of March 7, 2018 the SBML importer in CellBlender does not create the objects corresponding to the specified compartments. These have to be constructed manually in CellBlender.*
@@ -103,6 +106,8 @@ The files presented here are meant to provide a moderately paced but comprehensi
 A manuscript on the visualization methods and capabilities available with BioNetGen is available [here](https://doi.org/10.1371/journal.pcbi.1005857).
 
 An extended tutorial on visualization is available in the Supporting information: [S2 Appendix. Tutorial](https://doi.org/10.1371/journal.pcbi.1005857.s007).
+
+## SBML importer
 
 ## [Larger models](LargerModels)
 
