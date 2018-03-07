@@ -1,0 +1,16 @@
+## title: translateSBML.bngl
+#  description: Demonstrates how to translate a model in SBML format (has a .xml extension) into
+#               a .bngl model file. With the atomize parameter set to 1, the translator will attempt
+#               to determine the molecular composition and structure of each chemical species based on 
+#               several heuristic considerations (described elsewhere). With atomize=>0, the function will'
+#               perform a direct translation in which each species is represented as a distinct molecule type.
+#  date: 07Mar2018
+#  author: Jim Faeder
+
+# Set file argument to the name of the SBML file to be translated. In RuleBender this may be done using an 
+# absolute path to the file, or a relative path that is three subdirectories up from the current directory.
+#readFile({file=>"../../../test_sbml_structured_SBML.xml",atomize=>1})
+#readFile({file=>"../../../BIOMD0000000569.xml",atomize=>1})
+#readFile({file=>"../../../BIOMD0000000033.xml",atomize=>1})
+generate_network({overwrite=>1})
+simulate({method=>"ode",t_start=>0,t_end=>100,n_steps=>100})

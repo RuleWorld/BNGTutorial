@@ -112,6 +112,9 @@ An extended tutorial on visualization is available in the Supporting information
 
 ## SBML importer
 
+[`translateSBML.bngl`](SBML/translateSBML.bngl)
+: Input file that can be used to translate an SBML file (with .xml extension) into a BNGL model. The `atomize` parameter determines whether the translated will be structured (`atomize=>1`) or unstructured (`atomize=>0`). "Structured" here means that the translator will attempt to determine the underlying molecules, components, bonds, and states. 
+
 ## Larger models
 
 [`fceri_ji.bngl`](LargerModels/fceri_ji.bngl)
