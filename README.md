@@ -64,7 +64,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 
 ## Compartments in BioNetGen
 
-[`LR.bngl`](CBGL/LR.bngl)
+[`LR.bngl`](CBNGL/LR.bngl)
 : Non-compartmental model of simple ligand-receptor binding.
 
 [`LR_comp.bngl`](CBNGL/LR_comp.bngl)
