@@ -76,4 +76,14 @@ The files presented here are meant to provide a moderately paced but comprehensi
 [`LRR_comp.bngl`](CBNGL/LRR_comp.bngl)
 : Compartmental model of ligand-receptor binding and dimerization.
 
+### Models for CellBlender
+
+As of March 7, 2018 the SBML importer in CellBlender does not create the objects corresponding to the specified compartments. These have to be constructed manually in CellBlender.
+
+[`organelle_transport.bngl`](CBNGL/organelle_transport.bngl)
+: Simple model of tranport involving two cell organelles. This model is used in the CellBlender tutorial. The model exported in SBML format can be imported into CellBlender by selecting File->Import->BioNetGen/SBML model (.bngl,.xml)
+
+[`LV_comp.bngl`](CBNGL/LV_comp.bngl)
+: Lotke-Volterra model in compartmental form for export to CellBlender. NOTE: The third reaction needs to be modified to set the product to `NULL`.
+
 ![Flagman](images/Flagman-smaller.gif)

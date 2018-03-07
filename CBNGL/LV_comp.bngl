@@ -1,0 +1,42 @@
+## title: LV_comp.bgl
+## description: Compartment version fo the Lotka-Volterra predator-prey model. These 
+#               parameters correspond to the
+#               reaction-limited regime, and give rise to regular oscillations when simulated
+#               both with ODE's and SSA.
+## author: Jim Faeder
+## date: 22April2015
+begin model
+
+begin parameters
+ NA_um3 6.02e8
+  V 0.5*0.5*0.01 # volume in cubic microns 
+ k1 1.29e5 # 1/s
+ k2 (1e8)/NA_um3  # 1/M -> um^3/s 
+ k3 1.3e5  # 1/s
+end parameters
+begin compartments
+  cell 3 V
+end compartments
+
+begin species
+  S()@cell 1000
+  W()@cell  500
+end species
+
+begin observables
+  Molecules Stot S()
+  Molecules Wtot W()
+end observables
+
+begin reaction rules
+  S() -> S() + S() k1
+  S() + W() -> W() + W() k2
+  W() -> 0 k3
+end reaction rules
+
+end model
+
+#generate_network()
+#writeSBML()
+#simulate({method=>"ode",t_end=>0.001,n_steps=>1000})
+#simulate({method=>"ssa",t_end=>0.001,n_steps=>1000})
