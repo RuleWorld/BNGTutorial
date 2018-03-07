@@ -1,0 +1,108 @@
+## title: FceRI_viz.bngl
+#  description: A 
+begin model
+begin parameters
+  IgE_tot    2
+  FcR_tot    4.0e2
+  Lyn_tot    2.8e1
+  Syk_tot    4.0e2
+  Lat_tot    4.0e2
+  kp1        1.7e-6
+  km1        0.01
+  kp2        4.0e-1
+  km2        km1
+  kpL        5e-2
+  kmL        20
+  kpLs       5e-2
+  kmLs       0.12
+  kpS        6e-2
+  kmS        0.13
+  kpSs       6e-2
+  kmSs       0.13
+  pLb        30
+  pLbs       100
+  pLg        1
+  pLgs       3
+  pLS        30
+  pLSs       100
+  pSS        100
+  pSSs       200
+  dm         20
+  dc         20
+  kpMM       5e-3
+  kmMM       20
+  pMM        200
+end parameters
+begin molecule types
+  FcR(alpha,beta~0~P,gamma~0~P)
+  IgE(Fc,Fc)                 
+  Lat(Y136~0~P)                
+  Lyn(U,SH2)                   
+  Syk(tSH2,PTK~0~P)            
+end molecule types
+begin observables
+  Molecules pLat Lat(Y136~P!?)
+  Molecules LynFree Lyn(U,SH2)
+  Molecules FcRMon FcR(alpha) FcR(alpha!1).IgE(Fc!1,Fc)
+  Molecules FcRDim FcR().FcR()
+  Molecules FcRPbeta FcR(beta~P!?)
+  Molecules FcRPgamma FcR(gamma~P) FcR(gamma~P!+)
+  Molecules FcRSyk FcR(gamma~P!1).Syk(tSH2!1)
+  Molecules FcRSykPS FcR(gamma~P!1).Syk(tSH2!1,PTK~P)
+  Molecules SykTest Syk()
+  Molecules LynTest Lyn()
+  Molecules FcRTest FcR()
+end observables
+begin functions
+  Pb()   = FcRPbeta/FcRDim
+  Pg()   = FcRPgamma/FcRDim
+  SykP() = FcRSykPS/FcRDim
+end functions
+begin species
+  IgE(Fc,Fc) IgE_tot
+  Lyn(SH2,U) Lyn_tot
+  Syk(PTK~0,tSH2) Syk_tot
+  FcR(alpha,beta~0,gamma~0) FcR_tot
+  Lat(Y136~0) Lat_tot
+end species
+begin reaction rules
+  R1:  FcR(alpha) + IgE(Fc,Fc) <-> FcR(alpha!1).IgE(Fc!1,Fc)  kp1, km1
+  R2:  FcR(alpha) + IgE(Fc,Fc!+) <-> FcR(alpha!1).IgE(Fc!1,Fc!+)  kp2, km2
+  R3:  FcR(beta~0) + Lyn(U,SH2) <-> FcR(beta~0!1).Lyn(U!1,SH2)  kpL, kmL
+  R4:  IgE(Fc!1,Fc!2).Lyn(U!3,SH2).FcR(alpha!2,beta~0!3).FcR(alpha!1,beta~0) -> \
+IgE(Fc!1,Fc!2).Lyn(U!3,SH2).FcR(alpha!2,beta~0!3).FcR(alpha!1,beta~P)  pLb
+  R5:  IgE(Fc!1,Fc!2).Lyn(U!3,SH2).FcR(alpha!2,beta~0!3).FcR(alpha!1,gamma~0) -> \
+IgE(Fc!1,Fc!2).Lyn(U!3,SH2).FcR(alpha!2,beta~0!3).FcR(alpha!1,gamma~P)  pLg
+  R6:  IgE(Fc!1,Fc!2).Lyn(U,SH2!3).FcR(alpha!2,beta~P!3).FcR(alpha!1,beta~0) -> \
+IgE(Fc!1,Fc!2).Lyn(U,SH2!3).FcR(alpha!2,beta~P!3).FcR(alpha!1,beta~P)  pLbs
+  R7:  IgE(Fc!1,Fc!2).Lyn(U,SH2!3).FcR(alpha!2,beta~P!3).FcR(alpha!1,gamma~0) -> \
+IgE(Fc!1,Fc!2).Lyn(U,SH2!3).FcR(alpha!2,beta~P!3).FcR(alpha!1,gamma~P)  pLgs
+  R8:  FcR(beta~P) + Lyn(U,SH2) <-> FcR(beta~P!1).Lyn(U,SH2!1)  kpLs, kmLs
+  R9:  FcR(gamma~P) + Syk(tSH2) <-> FcR(gamma~P!1).Syk(tSH2!1)  kpS, kmS
+  R10:  IgE(Fc!1,Fc!2).Syk(tSH2!3,PTK~0).FcR(alpha!2,gamma~P!3).FcR(alpha!1,gamma~P!4).Syk(tSH2!4,PTK~0) -> \
+IgE(Fc!1,Fc!2).Syk(tSH2!3,PTK~0).FcR(alpha!2,gamma~P!3).FcR(alpha!1,gamma~P!4).Syk(tSH2!4,PTK~P)  pSS
+  R11:  IgE(Fc!1,Fc!2).Syk(tSH2!3,PTK~P).FcR(alpha!2,gamma~P!3).FcR(alpha!1,gamma~P!4).Syk(tSH2!4,PTK~0) -> \
+IgE(Fc!1,Fc!2).Syk(tSH2!3,PTK~P).FcR(alpha!2,gamma~P!3).FcR(alpha!1,gamma~P!4).Syk(tSH2!4,PTK~P)  pSSs
+  R12:  Syk(tSH2!+,PTK~P) + Lat(Y136~0) -> Syk(tSH2!+,PTK~P!1).Lat(Y136~0!1)  kpMM
+  R13:  Syk(PTK~P!1).Lat(Y136~0!1) -> Syk(PTK~P) + Lat(Y136~0)  kmMM
+  R14:  Syk(PTK~P!1).Lat(Y136~0!1) -> Syk(PTK~P) + Lat(Y136~P)  pMM
+  R15:  Lat(Y136~P) -> Lat(Y136~0)  dm
+  R16:  FcR(beta~P) -> FcR(beta~0)  dm
+  R17:  FcR(gamma~P) -> FcR(gamma~0)  dm
+  R18:  Syk(tSH2!+,PTK~P) -> Syk(tSH2!+,PTK~0)  dm
+  R19:  Syk(tSH2,PTK~P) -> Syk(tSH2,PTK~0)  dc
+end reaction rules
+end model
+
+# 1. Generate the network for the model and simulate for 10 minutes.
+# generate_network()
+simulate({method=>"ode",t_end=>600,n_steps=>500})
+
+# 2. Uncomment this line and rerun the model. 
+#visualize({type=>"opts"})
+
+# 3. Navigate to the appropriate folder in the results directory and move the file with suffix _opts.txt back 
+#    to the main project folder. Then uncomment the subsequent lines to produce atom-rule (aka, "regulatory")
+#    graphs with increasing levels of compression.
+#visualize({type=>"opts"})
+#visualize({type=>"regulatory",background=>0,opts=>["../../../FceRI_viz_opts.txt"]})

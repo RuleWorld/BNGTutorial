@@ -92,4 +92,16 @@ The files presented here are meant to provide a moderately paced but comprehensi
 
 **Exercise:** Can you identify two parameters that change the *frequency* of the oscillations? Can you find two parameters that change the *amplitute* of the oscillations?
 
+## Visualization examples
+
+[`visualize.bngl`](Viz/visualize.bngl)
+: Demonstrates the various visualization types that can be generated for a BNGL model. 
+
+[`FceRI_viz.bngl`](Viz/FceRI_viz.bngl)
+: A complex model of FceRI (immunoreceptor on mast cells and basophils) signaling with over 200 chemical species and 2000 reactions. 
+
+A manuscript on the visualization methods and capabilities available with BioNetGen is available [here](https://doi.org/10.1371/journal.pcbi.1005857).
+
+An extended tutorial on visualization is available in the Supporting information: [S2 Appendix. Tutorial](https://doi.org/10.1371/journal.pcbi.1005857.s007).
+
 ![Flagman](images/Flagman-smaller.gif)
