@@ -119,4 +119,13 @@ An extended tutorial on visualization is available in the Supporting information
 [`fceri_ji.bngl`](LargerModels/fceri_ji.bngl)
 : A more complex immunoreceptor signaling network. Demonstrates use of simulation protocol.
 
+**Exercise:** Can you make a reduced version of this model that has roughly half the number of species but tracks the same observables?
+
+[`egfr_simple.bngl`](LargerModels/egfr_simple.bngl)
+: A simplified model of EGFR signaling. 
+
+**Exercise:** Find out if the parameters for internalization and degradation of the receptor and ligand are realistic. What happens to the behavior of the model if realistic parameters are used?
+
+
+
 ![Flagman](images/Flagman-smaller.gif)
