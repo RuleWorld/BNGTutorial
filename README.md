@@ -104,4 +104,6 @@ A manuscript on the visualization methods and capabilities available with BioNet
 
 An extended tutorial on visualization is available in the Supporting information: [S2 Appendix. Tutorial](https://doi.org/10.1371/journal.pcbi.1005857.s007).
 
+## [Larger models](LargerModels)
+
 ![Flagman](images/Flagman-smaller.gif)
