@@ -112,6 +112,11 @@ An extended tutorial on visualization is available in the Supporting information
 
 ## SBML importer
 
-## [Larger models](LargerModels)
+## Larger models
+
+[Larger models](LargerModels)
+
+[`fceri_ji.bngl`](LargerModels/fceri_ji.bngl)
+: A more complex immunoreceptor signaling network. Demonstrates use of simulation protocol.
 
 ![Flagman](images/Flagman-smaller.gif)
