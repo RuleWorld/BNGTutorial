@@ -71,7 +71,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 : Compartmental model of simple ligand-receptor binding.
 
 [`LRR.bngl`](CBNGL/LRR.bngl)
-: Non-compartmental model of ligand-receptor binding and dimerization.
+: Non-compartmental model of ligand-receptor binding and dimerization. Also demonstrates `visualize` command to make `.gml` files for visualization of the rule network using the external tool [yEd](https://www.yworks.com/yed).
 
 [`LRR_comp.bngl`](CBNGL/LRR_comp.bngl)
 : Compartmental model of ligand-receptor binding and dimerization.
