@@ -51,7 +51,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 : Simple model illustrating synthesis and degradation of molecules. Also, demonstrates use of `saveConcentrations()` and `resetConcentrations()` to save and restore initial conditions and to compare model simulated with two different methods. Introduces `generate_network()` command.
 
 [`toggle.bngl`](SynDeg/toggle.bngl)
-: Simple model of a two-gene toggle switch describing the synthetic circuit of Gardner, Cantor, and Collins. Demonstrates use of the `bifuracate()` command to identify hysteresis loops in a potentially bistable system. Model also demonstrates stochastic transitions between metastable states that could represent cell phenotypes.
+: Simple model of a two-gene toggle switch describing the synthetic circuit of Gardner, Cantor, and Collins. Demonstrates use of the `bifurcate()` command to identify hysteresis loops in a potentially bistable system. Model also demonstrates stochastic transitions between metastable states that could represent cell phenotypes.
 
 **Exercise:** Make a simple model of an auto-regulating gene in which the gene product P dimerizes and binds to the promoter to block transcription. 
 
