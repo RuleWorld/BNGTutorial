@@ -62,7 +62,10 @@ The files presented here are meant to provide a moderately paced but comprehensi
 
 [More advanced models of gene regulation](SynDeg/AdvancedModels.md)
 
-## Compartments in BioNetGen
+## Ligand-receptor binding models
+
+These models address issues of unit definition, how to construct models with distinct spatial compartments, and using network-free simulation for models that have a large or potentially infinite number of possible species and reactions.
+See the [Quick Reference Guide](https://drive.google.com/file/d/0B2lPm2_GUE01X3ZaamZxUl80NTA/edit) for a brief introduction to the Compartment specification and syntax.
 
 [`LR.bngl`](CBNGL/LR.bngl)
 : Non-compartmental model of simple ligand-receptor binding.
@@ -79,7 +82,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 [`BLBR.bngl`](CBNGL/BLBR.bngl)
 : Bivalent ligand - bivalent receptor (BLBR) model, which is a simple model of polymer formation by receptors that can form a chain with infinite length (in the continuum limit). Simulating this model using a generate and simulate approach is problematic because for these parameters the required network of complexes is very large. Using network-free simulation addresses this problem.
 
-### Models for CellBlender
+## Models for CellBlender
 
 *As of March 7, 2018 the SBML importer in CellBlender does not create the objects corresponding to the specified compartments. These have to be constructed manually in CellBlender.*
 
@@ -89,7 +92,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 [`LV_comp.bngl`](CBNGL/LV_comp.bngl)
 : Lotke-Volterra model in compartmental form for export to CellBlender. NOTE: The third reaction needs to be modified to set the product to `NULL`.
 
-### cBNGL model of signaling/transcription with negative feedback
+## cBNGL model of signaling/transcription with negative feedback
 
 [`cBNGL_simple.bngl`](CBNGL/cBNGL_simple.bngl)
 
