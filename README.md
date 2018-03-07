@@ -130,4 +130,7 @@ An extended tutorial on visualization is available in the Supporting information
 [`Creamer_2012.bngl`](LargerModels/Creamer_2012.bngl)
 : Visualize a large library of epidermal growth factor signaling using the `visualize` command. A manuscript describing this model can be found [here](https://bmcsystbiol.biomedcentral.com/articles/10.1186/1752-0509-6-107). 
 
+[`Suderman_2013.bngl`](LargerModels/Suderman_2013.bngl)
+: Visualize a large library of yeast pheromone signaling using the `visualize` command. A manuscript describing this model can be found [here](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003278).
+
 ![Flagman](images/Flagman-smaller.gif)
