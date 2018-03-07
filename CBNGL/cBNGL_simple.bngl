@@ -1,0 +1,176 @@
+begin model
+
+# A simplified signal transduction model including the following processes:
+# 1) ligand-receptor binding
+# 2) receptor autophosphorylation and constitutive dephosphorylation
+# 3) internalization of phosphorylated receptors and recycling of endosomes
+# 4) phosphorylation of a diffusible transcription factor (TF)
+# 5) phosphorylation dependent cytoplasmic <-> nuclear transport of TF
+# 6) TF-dependent transcription of gene p
+# 7) Transport and degradation of p mRNA
+# 8) Translation of protein P
+# 9) P-mediated dephosphorylation of R
+# 
+# The action of P on the phosphorylated receptor constitutes a negative feedback 
+# loop and the system can be made to oscillate by setting a sharp threshold 
+# for the level of transcriptional activity as a function of the nuclear concentration
+# of TF. This is achieved in the model by using a functional rate law that uses the 
+# Hill function. This model is a modified version of a model that was originally published  
+# in the Proceedings of the 2009 Winter Simulation Conference 
+# (doi: 10.1109/WSC.2009.5429719).                              
+#
+# cBNGL code: l.harris@vanderbilt.edu faeder@pitt.edu                                        
+# 21 February 2015                                                                                                                                         
+
+begin parameters
+
+  # mean number of endosomes
+  nEndo           5      
+
+  # volumes
+  vol_EC         20.0   
+  vol_CP          4.0
+  vol_NU          1.0
+  vol_EN          0.1*nEndo
+  
+  # membrane surface areas
+  sa_PM           0.4    
+  sa_NM           0.1
+  sa_EM           0.01*nEndo
+  
+  # effective surface width
+  eff_width       1.0    
+
+  # initial species counts (extensive units: quantity, not concentration)
+  L0              100   
+  R0              200     
+  TF0             200
+  DNA0            2
+
+  # kinetic parameters (2nd order reaction params in vol/time units)
+  kp_LR           0.1    # vol/time
+  km_LR           1.0    # /time
+  
+  k_R_endo        1.0    # /time
+  k_recycle       0.1    # /time
+  k_R_phos        1.0    # /time
+  k_R_dephos      0.1    # /time
+  
+  kp_R_TF         0.1    # vol/time
+  km_R_TF         0.1    # /time
+  k_TF_phos       1.0    # /time
+  k_TF_dephos     10.0    # /time
+  
+  k_transcribe    1.0    # /time
+  KM_TF_dna_trans 5.0    # number
+  n_P             50.0    # Hill coefficient for transcription - exhibits strong oscillations for 
+                          #   values 15 and above
+  
+  k_mRNA_to_CP    1.0    # /time (volume-to-volume species transport)
+  k_translate     100.0    # /time
+  k_mRNA_deg      1.0    # /time
+  k_P_deg         0.1    # /time
+  
+  k_TF_import     10     # /time
+  k_TF_export     10     # /time
+end parameters
+
+begin compartments
+  EC  3  vol_EC 
+  PM  2  sa_PM * eff_width       EC
+  CP  3  vol_CP                  PM
+  NM  2  sa_NM * eff_width       CP
+  NU  3  vol_NU                  NM
+  EM  2  sa_EM * eff_width       CP
+  EN  3  vol_EN                  EM
+end compartments
+
+begin molecule types
+  L(r)                 # Ligand w/ receptor binding site.
+  R(l,tf~Y~pY)         # Receptor with ligand and TF binding sites.
+  TF(d~Y~pY)           # Transcription factor with phosphorylation domain.
+  DNA()                # DNA molecule. 
+  mRNA()               # mRNA transcript.
+  P(r)                 # Protein under control of TF - negative regulator of R
+end molecule types
+
+begin species
+  L(r)@EC              L0
+  R(l,tf~Y)@PM         R0
+  TF(d~Y)@CP           TF0
+  DNA()@NU             DNA0
+  P(r)@CP              0
+end species
+
+begin observables
+  Molecules  L_Bound_PM    @PM:L
+  Molecules  L_Bound_EM    @EM:L
+  Molecules  Rp_tot        R(tf~pY!?)
+  Molecules  Rp_PM        @PM:R(tf~pY!?)
+  Molecules  Rp_EM        @EM:R(tf~pY!?)
+  Molecules  TF_nuc        @NU:TF()
+  Molecules  Tot_mRNA      mRNA
+  Molecules  Tot_P         P
+  Molecules  P_R           P.R
+end observables
+
+begin functions
+  rate_transcribe() = k_transcribe*TF_nuc^n_P/( KM_TF_dna_trans^n_P + TF_nuc^n_P) # volume/time
+end functions
+
+begin reaction rules
+
+  # receptor-ligand binding.
+  L_R_bind:  L(r) + R(l)  <->  L(r!1).R(l!1)            kp_LR, km_LR
+
+  # phosphorylated receptor internalization.
+  L_R_int:  @PM:R(tf~pY!?) ->  @EM:R(tf~pY)              k_R_endo
+
+  # receptor recycling.
+  R_recyc:  @EM:R  ->  @PM:R                           k_recycle
+  
+  # ligand recycling
+  L_recyc:  @EN:L  ->  @EC:L                           k_recycle
+
+  # receptor phosphorylation
+  R_phos:  R(l!+,tf~Y)  ->  R(l!+,tf~pY)              k_R_phos
+  
+  # receptor dephosphorylation
+  R_dephos:  R(tf~pY)   ->  R(tf~Y)                     k_R_dephos
+  
+  # receptor-mediated transcription factor phosphorylation
+  R_TF_bind: R(tf~pY) + TF(d~Y) <-> R(tf~pY!1).TF(d~Y!1)   kp_R_TF, km_R_TF
+  R_TF_phos: R(tf~pY!1).TF(d~Y!1) -> R(tf~pY) + TF(d~pY) k_TF_phos
+
+  # Inhibition of receptor kinase activity by P
+  P_R_bind: P(r) + R(tf~pY) <-> P(r!1).R(tf~pY!1) 10*kp_R_TF, km_R_TF
+  P_R_dephos: P(r!1).R(tf~pY!1) -> P(r) + R(tf~Y) k_R_phos
+
+  # transcription factor dephosphorylation
+  TFdephos:  @CP:TF(d~pY)      ->  @CP:TF(d~Y)           k_TF_dephos
+  
+  # TF transport cytoplasm <-> nucleus
+  TFtransp:  @CP:TF(d~pY) <-> @NU:TF(d~pY) k_TF_import, k_TF_export
+
+  # TF-mediated transcription
+  Ptransc: DNA() -> DNA() + mRNA()@NU  rate_transcribe()
+    
+  # mRNA transport to cytoplasm.
+  mRNAtransp:  mRNA@NU  ->  mRNA@CP             k_mRNA_to_CP
+  
+  # mRNA translation to protein.
+  Ptransl:  mRNA@CP  ->  mRNA@CP  +  P(r)@CP    k_translate
+  
+  # mRNA degradation.
+  mRNAdeg:  mRNA     ->  0                   k_mRNA_deg  
+  
+  # protein degradation.
+  Pdeg:  P        ->  0                   k_P_deg  DeleteMolecules
+  
+end reaction rules  
+end model
+
+# actions #
+generate_network({overwrite=>1})
+writeMfile()
+simulate({method=>"ode",t_end=>500,n_steps=>500,verbose=>1})
