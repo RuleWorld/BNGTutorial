@@ -124,6 +124,10 @@ An extended tutorial on visualization is available in the Supporting information
 
 **Exercise:** Find out if the parameters for internalization and degradation of the receptor and ligand are realistic. What happens to the behavior of the model if realistic parameters are used?
 
+[`Chylek_library.bngl`](LargerModels/Chylek_library.bngl)
+: Visualize a large library of immunoreceptor signaling using the `visualize` command. A manuscript describing this library can be found [here](https://www.frontiersin.org/articles/10.3389/fimmu.2014.00172/full). 
 
+[`Creamer_2012.bngl`](LargerModels/Creamer_2012.bngl)
+: Visualize a large library of epidermal growth factor signaling using the `visualize` command. A manuscript describing this model can be found [here](https://bmcsystbiol.biomedcentral.com/articles/10.1186/1752-0509-6-107). 
 
 ![Flagman](images/Flagman-smaller.gif)
