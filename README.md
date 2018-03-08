@@ -117,7 +117,7 @@ An extended tutorial on visualization is available in the Supporting information
 
 ## Larger models
 
-[`fceri_ji.bngl`](LargerModels/fceri_ji.bngl)
+[`FceRI_ji.bngl`](LargerModels/FceRI_ji.bngl)
 : A more complex immunoreceptor signaling network. Demonstrates use of simulation protocol.
 
 **Exercise:** Can you make a reduced version of this model that has roughly half the number of species but tracks the same observables?
