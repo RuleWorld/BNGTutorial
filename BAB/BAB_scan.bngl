@@ -27,5 +27,6 @@ begin model
   end reaction rules
 end model
 
+generate_network()
 parameter_scan({parameter=>"A0",par_min=>1,par_max=>1e4,n_scan_pts=>50,\
                 method=>"ode",t_end=>10000,log_scale=>1})
