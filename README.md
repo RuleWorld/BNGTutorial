@@ -96,7 +96,7 @@ See the [Quick Reference Guide](https://drive.google.com/file/d/0B2lPm2_GUE01X3Z
 
 [`cBNGL_simple.bngl`](CBNGL/cBNGL_simple.bngl)
 
-**Exercise:** Can you identify two parameters that change the *frequency* of the oscillations? Can you find two parameters that change the *amplitute* of the oscillations?
+**Exercise:** Can you identify two parameters that change the *frequency* of the oscillations? Can you find two parameters that change the *amplitude* of the oscillations?
 
 ## Visualization examples
 
