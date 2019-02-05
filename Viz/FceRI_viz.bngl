@@ -102,7 +102,6 @@ simulate({method=>"ode",t_end=>600,n_steps=>500})
 #visualize({type=>"opts"})
 
 # 3. Navigate to the appropriate folder in the results directory and move the file with suffix _opts.txt back 
-#    to the main project folder. Then uncomment the subsequent lines to produce atom-rule (aka, "regulatory")
-#    graphs with increasing levels of compression.
-#visualize({type=>"opts"})
+#    to the main project folder. Then uncomment the subsequent lines to produce a compressed atom-rule 
+#    graph.
 #visualize({type=>"regulatory",background=>0,opts=>["../../../FceRI_viz_opts.txt"]})
