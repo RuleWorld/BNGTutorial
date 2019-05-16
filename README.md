@@ -89,6 +89,9 @@ See the [Quick Reference Guide](https://drive.google.com/file/d/0B2lPm2_GUE01X3Z
 [`organelle_transport.bngl`](CBNGL/organelle_transport.bngl)
 : Simple model of tranport involving two cell organelles. This model is used in the CellBlender tutorial. The model exported in SBML format can be imported into CellBlender by selecting File->Import->BioNetGen/SBML model (.bngl,.xml)
 
+[`organelle_transport_struct.bngl`](CBNGL/organelle_transport_struct.bngl)
+: Equivalent version of organelle transport model using structured molecules.
+
 [`LV_comp.bngl`](CBNGL/LV_comp.bngl)
 : Lotke-Volterra model in compartmental form for export to CellBlender. NOTE: The third reaction needs to be modified to set the product to `NULL`.
 
