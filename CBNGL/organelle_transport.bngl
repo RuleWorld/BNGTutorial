@@ -1,22 +1,24 @@
-## title: organelle_transport.bngl
-#  description: Simple model of tranport involving two cell organelles. This is the model 
+## title: organelle_transport_abcd.bngl
+#  description: Simple model of transport involving two cell organelles. This is the model 
 #               that was used in the CellBlender tutorial.
 begin parameters
-    NA 6.02e23 # Avogadro’s number
-    kp_LR 4e8
-    km_LR 10
-    k_LRtrans 1000
-    kp_LT1 4e8
-    km_LT1 10
-    k_LT1trans 1000
-    kp_L2T2 4e8
-    km_L2T2 10
-    k_L2T2trans 1000
-    vol_CYT 1
-    vol_O1M 1
-    vol_O1V 1
-    vol_O2M 1
-    vol_O2V 1
+    NA_um3 6.02e8 # Avogadro’s number*L/um3
+    d 0.01 # [um] Effective membrane thickness used to compute membrane volume
+    vol_CYT 1 # [um^3] Volume of cytoplasm
+    vol_O1M 1*d # [um^3] Effective volume of organelle 1 membrane
+    vol_O1V 0.133 # [um^3] Effective volume of organelle 1
+    vol_O2M 1*d     # [um^3] Effective volume of organelle 2 membrane
+    vol_O2V 0.0335 # [um^3] Effective volume of organelle 2
+    kp_AB 1e9/NA_um3  # 1/Ms  ->  um3/s
+    kp_AT1 3e8/NA_um3
+    km_AT1 10
+    k_AT1trans 1e5
+    kp_CT1 3e8/NA_um3
+    km_CT1 10
+    k_CT1trans 1e5
+    kp_CT2 3e8/NA_um3
+    km_CT2 10
+    k_DT2trans 1e5
 end parameters
 
 begin compartments
@@ -28,39 +30,58 @@ begin compartments
 end compartments
 
 begin molecule types
-L()
-R()
-LR()
+A()
+B()
+C()
+D()
 T1()
-LT1()
-L2()
+AT1()
+CT1()
 T2()
-L2T2()
+CT2()
 end molecule types
 
 begin seed species
-L@CYT 1000
-R@O1M 200
-T1@O1M 1000
-T2@O2M 1000
+A@CYT 1200
+B@O1V 1000
+T1@O1M 700
+T2@O2M 700
 end seed species
 
 begin observables
-  Molecules L2in L2@O2V()
+  Molecules A A()
+  Molecules B B()
+  Molecules C C()
+  Molecules D D()
 end observables
 
 begin functions
 end functions
 
 begin reaction rules
-L@CYT + R@O1M <-> LR@O1M kp_LR, km_LR
-LR@O1M -> L@O1V + R@O1M k_LRtrans
-L@O1V + T1@O1M <-> LT1@O1M kp_LT1, km_LT1
-LT1@O1M -> T1@O1M + L2@CYT k_LT1trans
-L2@CYT + T2@O2M <-> L2T2@O2M kp_L2T2, km_L2T2
-L2T2@O2M -> T2@O2M + L2@O2V k_L2T2trans
+# A in cytoplasm binds T1 on organelle 1 (reversibly)
+A@CYT + T1@O1M <-> AT1@O1M kp_AT1, km_AT1
+# 
+# A bound to T1 moves to interior of organelle 1 
+AT1@O1M -> T1@O1M + A@O1V k_AT1trans
+
+# A and B in interior of organelle 1 form a complex C
+A@O1V + B@O1V  -> C@O1V kp_AB
+
+# C in interior of organelle 1 binds to T1 (reversibly)
+C@O1V + T1@O1M <-> CT1@O1M kp_CT1, km_CT1
+
+# C bound to T1 transports to cytoplasm
+CT1@O1M -> T1@O1M + C@CYT k_CT1trans
+
+# C in cytoplasm binds to T2 on orgenelle 2 (reversibly)
+C@CYT + T2@O2M <-> CT2@O2M kp_CT2, km_CT2
+
+# C bound to T2 moves to interior of organelle 2 and becomes D
+CT2@O2M -> T2@O2M + D@O2V k_DT2trans
+
 end reaction rules
 
 generate_network()
 writeSBML()  
-simulate({method=>"ssa",t_start=>0,t_end=>.1,n_steps=>1000})
+simulate({method=>"ode",t_start=>0,t_end=>.01,n_steps=>1000})
