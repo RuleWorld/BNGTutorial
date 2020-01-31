@@ -15,7 +15,7 @@ The files presented here are meant to provide a moderately paced but comprehensi
 : Simple binding model with modifed `method` option to `simulate` command to demonstrate `ssa` method for performing stochastic simulation.
 
 [`LV.bngl`](ABC/LV.bngl)
-: Lotke-Volterra model in BioNetGen syntax.
+: Lotka-Volterra model in BioNetGen syntax.
 
 ## Using structured molecules and rules: Binding
 [`AB.bngl`](AB/AB.bngl)
@@ -93,7 +93,7 @@ See the [Quick Reference Guide](https://drive.google.com/file/d/0B2lPm2_GUE01X3Z
 : Equivalent version of organelle transport model using structured molecules.
 
 [`LV_comp.bngl`](CBNGL/LV_comp.bngl)
-: Lotke-Volterra model in compartmental form for export to CellBlender. NOTE: The third reaction needs to be modified to set the product to `NULL`.
+: Lotka-Volterra model in compartmental form for export to CellBlender. NOTE: The third reaction needs to be modified to set the product to `NULL`.
 
 ## cBNGL model of signaling/transcription with negative feedback
 
