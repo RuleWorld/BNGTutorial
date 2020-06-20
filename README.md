@@ -17,6 +17,9 @@ The files presented here are meant to provide a moderately paced but comprehensi
 [`LV.bngl`](ABC/LV.bngl)
 : Lotka-Volterra model in BioNetGen syntax.
 
+[`SIR.bngl`](ABC/SIR.bngl)
+: Basic disease outbreak model used in 2020 Workshop Tutorial
+
 ## Using structured molecules and rules: Binding
 [`AB.bngl`](AB/AB.bngl)
 : Simple binding model re-factored to used structured molecules with binding sites and a binding rule that adds or deletes a bond. Things to notice:
