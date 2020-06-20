@@ -24,7 +24,7 @@ begin reaction rules
 end reaction rules
 end model
 
-#saveConcentrations()
+saveConcentrations()
 simulate({method=>"ode",suffix=>"ode",t_end=>300,n_steps=>200})
 resetConcentrations()
 simulate({method=>"ssa",suffix=>"ssa",t_end=>300,n_steps=>200})
