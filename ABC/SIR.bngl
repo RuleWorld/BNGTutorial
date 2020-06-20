@@ -1,8 +1,8 @@
 begin model
 begin parameters
-  N 10000
+  N 100
   I0  1
-  b 1.2
+  b 1.8/N
   g 1
 end parameters
 
@@ -19,7 +19,7 @@ begin observables
 end observables
 
 begin reaction rules
-  S + I -> I + I b/N
+  S + I -> I + I b
   I -> R g
 end reaction rules
 end model
