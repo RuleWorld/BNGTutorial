@@ -1,0 +1,30 @@
+begin model
+begin parameters
+  N 10000
+  I0  1
+  b 1.2
+  g 1
+end parameters
+
+begin species
+  S   N-I0
+  I   I0
+  R   0
+end species
+
+begin observables
+  Molecules S S()
+  Molecules I I()
+  Molecules R R()
+end observables
+
+begin reaction rules
+  S + I -> I + I b/N
+  I -> R g
+end reaction rules
+end model
+
+#saveConcentrations()
+simulate({method=>"ode",suffix=>"ode",t_end=>300,n_steps=>200})
+resetConcentrations()
+simulate({method=>"ssa",suffix=>"ssa",t_end=>300,n_steps=>200})
