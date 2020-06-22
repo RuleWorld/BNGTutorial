@@ -1,5 +1,5 @@
-## title: LRR.bngl
-## Ligand-receptor binding and dimerization model expressed in cell units:
+## title: LRR_comp.bngl
+## Compartmental version of ligand-receptor binding and dimerization model expressed in cell units:
 #     time - seconds
 #     concentration - molecule number
 #     length - um, area - um^2, volume - um^3
