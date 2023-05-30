@@ -1,6 +1,9 @@
-## title: organelle_transport_abcd.bngl
-#  description: Simple model of transport involving two cell organelles. This is the model 
-#               that was used in the CellBlender tutorial.
+## title: organelle_transport.bngl
+#  description: Simple model of transport involving two cell organelles.
+#    This is the model that was used in the CellBlender tutorial.
+# Note: This file is a compartmental BNGL file
+#       and can be imported into CellBlender using:
+#       File->Import->Compartmental BioNetGen model (.bngl)
 begin parameters
     NA_um3 6.02e8 # Avogadro’s number*L/um3
     d 0.01 # [um] Effective membrane thickness used to compute membrane volume
